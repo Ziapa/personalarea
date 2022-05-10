@@ -1,0 +1,41 @@
+@import "style/veriables";
+
+.app  {
+  display: flex;
+  height: 100vh;
+  color: $textColor;
+  background-color: $backgroundColor;
+  font-size: $fontSize;
+  font-weight: $fontWeight;
+&_with {
+  background-color: white;
+}
+  .navBarCollapsed {
+    width: 0;
+  }
+  .navBar {
+    display: flex;
+    &_content {
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+    &_button {
+      background-color: $backgroundColorMenuBtn;
+      cursor: pointer;
+      width: 24px;
+      max-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  .content {
+    width: 100%;
+    overflow: auto;
+  }
+}
+
+
+
+
+

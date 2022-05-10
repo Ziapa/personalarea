@@ -1,26 +1,49 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react';
+import './App.module.scss';
+import s from "./App.module.scss"
+import {IoChevronBackOutline, IoChevronForwardOutline} from "react-icons/io5";
+import {Route, Routes} from 'react-router-dom';
+import {Profile} from "./commponents/Profile/Profile";
+import {InfoPanel} from './commponents/InfoPanel/InfoPanel';
+import {NavBar} from "./commponents/NavBar/NevBar";
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    const [collapsed, setCollapsed] = useState<boolean>(false)
+    const styleCollapsed = collapsed ? {width: "0px"} : {minWidth: "221px"}
+    const collapsedBTN = collapsed ? <IoChevronForwardOutline/> : <IoChevronBackOutline/>
+
+    return (
+        <div className={s.app}>
+            <div className={s.navBar}>
+
+                <div className={s.navBar_content}
+                     style={styleCollapsed}>
+
+                    <NavBar/>
+
+                    <div>
+                        Темная тема
+                    </div>
+                </div>
+
+                <div className={s.navBar_button} onClick={() => setCollapsed(!collapsed)}>
+                    {collapsedBTN}
+                </div>
+
+
+            </div>
+
+            <div className={s.content}>
+                <Routes>
+                    <Route path="Profile" element={<Profile/>}/>
+                    <Route path="InfoPanel" element={<InfoPanel/>}/>
+                </Routes>
+
+            </div>
+        </div>
+    );
 }
 
 export default App;
